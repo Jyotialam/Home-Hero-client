@@ -1,72 +1,87 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Link } from "react-router-dom";
 
-const MySlider = () => {
+import BgImage from "../assets/background_01.jpg";
+import rightSideImg from "../assets/background_transparent_01.png";
+import service1 from "../assets/image_service_01.jpg";
+import service2 from "../assets/image_service_02.jpg";
+import service3 from "../assets/image_service_03.jpg";
+
+function MySlider() {
   const slides = [
     {
-      id: 1,
-      image: "https://i.ibb.co/3rphMjK/electrician.jpg",
-      title: "Find Expert Electricians Near You",
-      desc: "Get quick and trusted help from certified electricians for all your home needs.",
+      img: service1,
+      title: "OUTDOOR TOYS",
+      desc: "All That Your Child Wish For",
+      price: "Starts @ $5.00",
     },
     {
-      id: 2,
-      image: "https://i.ibb.co/S6H0B0J/plumber.jpg",
-      title: "Reliable Plumbing Services",
-      desc: "Fix leaks, install fittings, and get expert plumbing assistance anytime, anywhere.",
+      img: service2,
+      title: "UP TO 50% OFF",
+      desc: "Colorful Friction Powered Toys",
+      price: "Grab your favorite today!",
     },
     {
-      id: 3,
-      image: "https://i.ibb.co/vdZJHbL/cleaning.jpg",
-      title: "Professional Home Cleaning",
-      desc: "Book experienced cleaners to keep your home fresh and spotless effortlessly.",
+      img: service3,
+      title: "UP TO 30% OFF",
+      desc: "Let’s Improve Kids Motor Skills",
+      price: "Only $15.55❤",
     },
   ];
 
   return (
-    <div className="w-full">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }}
-        loop={true}
-        className="rounded-lg overflow-hidden"
-      >
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <div
-              className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.image})` }}
-            >
-              {/* dark overlay */}
-              <div className="absolute inset-0 bg-black/50"></div>
+    <div
+      className="w-full h-[90vh] flex items-end justify-between bg-cover bg-center px-6 lg:px-16"
+      style={{
+        backgroundImage: `url(${BgImage})`,
+      }}
+    >
+      {/* LEFT SIDE - SLIDER */}
+      <div className="w-full lg:w-2/3 pb-1"> {/* pb-8 for bottom placement */}
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          navigation
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          loop={true}
+          className="w-full h-[75vh]" // increased height
+        >
+          {slides.map((item, index) => (
+            <SwiperSlide key={index}>
+              {/* IMAGE + TEXT SAME CONTAINER */}
+              <div className="relative w-full h-[75vh] flex items-end justify-center">
+                {/* Image */}
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-[80%] h-full object-cover rounded-2xl shadow-lg"
+                />
 
-              {/* slide text */}
-              <div className="relative text-center text-white px-6 md:px-12 max-w-2xl">
-                <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-                  {slide.title}
-                </h1>
-                <p className="text-lg md:text-xl mb-6 opacity-90">
-                  {slide.desc}
-                </p>
-                <Link
-                  to="/services"
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full text-lg font-semibold transition-all"
-                >
-                  Explore Services
-                </Link>
+                {/* Text overlay below image */}
+                <div className="absolute bottom-0 w-[80%] bg-black/60 text-white p-5 rounded-b-2xl">
+                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                  <h2 className="text-3xl font-bold leading-snug">{item.desc}</h2>
+                  <p className="text-lg mt-1">{item.price}</p>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* RIGHT SIDE - FIXED IMAGE */}
+      <div className="hidden lg:flex w-1/3 h-full items-center justify-center">
+        <img
+          src={rightSideImg}
+          alt="Promo"
+          className="max-h-full object-contain"
+        />
+      </div>
     </div>
   );
-};
+}
 
 export default MySlider;
