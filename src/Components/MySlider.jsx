@@ -1,34 +1,34 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { useNavigate } from "react-router"; 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import BgImage from "../assets/background_01.jpg";
 import rightSideImg from "../assets/background_transparent_01.png";
-import service1 from "../assets/image_service_01.jpg";
-import service2 from "../assets/image_service_02.jpg";
-import service3 from "../assets/image_service_03.jpg";
+import service1 from "../assets/home-cleaning.jpg";
+import service2 from "../assets/office-deep-cleaning.png";
+import service3 from "../assets/RESIDENTIAL PLUMBING.jpg";
 
 function MySlider() {
+  const navigate = useNavigate(); 
+
   const slides = [
     {
       img: service1,
-      title: "OUTDOOR TOYS",
-      desc: "All That Your Child Wish For",
-      price: "Starts @ $5.00",
+      title: "Home Cleaning",
+      desc: "Professional home cleaning services for a spotless living space.",
     },
     {
       img: service2,
-      title: "UP TO 50% OFF",
-      desc: "Colorful Friction Powered Toys",
-      price: "Grab your favorite today!",
+      title: "Office Deep Cleaning",
+      desc: "Keep your office environment clean, fresh, and hygienic.",
     },
     {
       img: service3,
-      title: "UP TO 30% OFF",
-      desc: "Let’s Improve Kids Motor Skills",
-      price: "Only $15.55❤",
+      title: "Residential Plumbing",
+      desc: "Expert plumbing solutions for homes with fast and reliable service.",
     },
   ];
 
@@ -40,18 +40,17 @@ function MySlider() {
       }}
     >
       {/* LEFT SIDE - SLIDER */}
-      <div className="w-full lg:w-2/3 pb-1"> {/* pb-8 for bottom placement */}
+      <div className="w-full lg:w-2/3 pb-1">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           navigation
           pagination={{ clickable: true }}
           autoplay={{ delay: 4000, disableOnInteraction: false }}
           loop={true}
-          className="w-full h-[75vh]" // increased height
+          className="w-full h-[75vh]"
         >
           {slides.map((item, index) => (
             <SwiperSlide key={index}>
-              {/* IMAGE + TEXT SAME CONTAINER */}
               <div className="relative w-full h-[75vh] flex items-end justify-center">
                 {/* Image */}
                 <img
@@ -61,10 +60,15 @@ function MySlider() {
                 />
 
                 {/* Text overlay below image */}
-                <div className="absolute bottom-0 w-[80%] bg-black/60 text-white p-5 rounded-b-2xl">
+                <div className="absolute bottom-0 w-[80%] bg-black/60 text-white p-5 rounded-b-2xl flex flex-col gap-2">
                   <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <h2 className="text-3xl font-bold leading-snug">{item.desc}</h2>
-                  <p className="text-lg mt-1">{item.price}</p>
+                  <p className="text-base">{item.desc}</p>
+                  <button
+                    onClick={() => navigate("/services")} // ✅ redirect
+                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-max"
+                  >
+                    Explore
+                  </button>
                 </div>
               </div>
             </SwiperSlide>
@@ -73,7 +77,7 @@ function MySlider() {
       </div>
 
       {/* RIGHT SIDE - FIXED IMAGE */}
-      <div className="hidden lg:flex w-1/3 h-full items-center justify-center">
+      <div className="hidden lg:flex w-1/3 h-full pt-2 items-center justify-center">
         <img
           src={rightSideImg}
           alt="Promo"

@@ -6,6 +6,8 @@ import { FaHome } from "react-icons/fa";
 import logoImg from "../assets/home-logo.jpg";
 import { MdHomeRepairService } from "react-icons/md";
 import { ImBoxAdd } from "react-icons/im";
+import userIcon from "../assets/user.png"
+
 // import { div } from "framer-motion/client";
 // import { use } from "react";
 // import { AuthContext } from "../context/AuthContext";
@@ -28,7 +30,7 @@ const NavBar = () => {
       </li>
       <li>
         <NavLink
-          to={"/all-services"}
+          to={"/services"}
           className={({ isActive }) =>
             `flex items-center gap-1 ${
               isActive ? "border-b-2 border-white" : ""
@@ -49,6 +51,18 @@ const NavBar = () => {
           }
         >
           <ImBoxAdd size={16} /> Add Service
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/my-services"}
+          className={({ isActive }) =>
+            `flex items-center gap-1 ${
+              isActive ? "border-b-2 border-white" : ""
+            }`
+          }
+        >
+          <MdHomeRepairService size={20} /> My Services
         </NavLink>
       </li>
       <li>
@@ -111,6 +125,7 @@ const NavBar = () => {
 
         {/* Right */}
         <div className="navbar-end gap-3">
+          <img src={userIcon} alt="" className="rounded-full"/>
           {/* {user ? (
           <div className="dropdown dropdown-end z-50">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -150,6 +165,7 @@ const NavBar = () => {
             </ul>
           </div>
         ) : ( */}
+       
           <Link
             to={"/auth/login"}
             className="btn rounded-md text-lg bg-[#51ACFB] text-white border-none"

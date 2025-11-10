@@ -1,13 +1,14 @@
 import { Link } from 'react-router';
-import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
-import { FaHome } from 'react-icons/fa';
+import { Facebook, Instagram, Mail } from 'lucide-react';
+import { FaHome, } from 'react-icons/fa';
+import { PiXLogoBold } from 'react-icons/pi';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-r from-blue-500 to-indigo-600 py-8 px-4 rounded-xl mt-20">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+    <footer className="bg-[#001E38] py-8 px-4 mt-20">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* Brand */}
         <div>
           <div className="flex items-center space-x-2 text-white">
@@ -52,7 +53,7 @@ const Footer = () => {
               <Facebook size={24} />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-sky-400">
-              <Twitter size={24} />
+              <PiXLogoBold size={24} />
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-pink-600">
               <Instagram size={24} />
