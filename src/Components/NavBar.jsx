@@ -6,14 +6,15 @@ import { FaHome } from "react-icons/fa";
 import logoImg from "../assets/home-logo.jpg";
 import { MdHomeRepairService } from "react-icons/md";
 import { ImBoxAdd } from "react-icons/im";
-import userIcon from "../assets/user.png"
+import userIcon from "../assets/user.png";
 
 // import { div } from "framer-motion/client";
-// import { use } from "react";
-// import { AuthContext } from "../context/AuthContext";
+import { use } from "react";
+import { AuthContext } from "../Contexts/AuthContext";
+
 
 const NavBar = () => {
-  //   const { user, signOutUser } = use(AuthContext);
+  // const { user, signOutUser } = use(AuthContext);
   const pageLinks = (
     <>
       <li>
@@ -127,51 +128,55 @@ const NavBar = () => {
         <div className="navbar-end gap-3">
           <img src={userIcon} alt="" className="rounded-full"/>
           {/* {user ? (
-          <div className="dropdown dropdown-end z-50">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-              <div className="w-9 border-2 border-white rounded-full">
-                <img
-                  alt="User"
-                  referrerPolicy="no-referrer"
-                  src={
-                    user.photoURL ||
-                    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                  }
-                />
+            <div className="dropdown dropdown-end z-50">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-9 border-2 border-white rounded-full">
+                  <img
+                    alt="User"
+                    referrerPolicy="no-referrer"
+                    src={user.photoURL || userIcon}
+                  />
+                </div>
               </div>
+              <ul
+                tabIndex="-1"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow text-gray-700"
+              >
+                <div className="pb-3 border-b border-b-gray-200">
+                  <li className="text-sm font-bold">{user.displayName}</li>
+                  <li className="text-xs">{user.email}</li>
+                </div>
+                <li className="mt-3">
+                  <Link to={"/profile"}>
+                    <FaUser /> Profile
+                  </Link>
+                </li>
+                <li>
+                  <a>
+                    <FaGear /> Settings
+                  </a>
+                </li>
+                <li>
+                  <button
+                    onClick={signOutUser}
+                    className="btn btn-xs text-left bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
+                  >
+                    <IoLogOut /> Logout
+                  </button>
+                </li>
+              </ul>
             </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow text-gray-700"
+          ) : ( */}
+            <Link
+              to={"/auth/login"}
+              className="btn rounded-md text-lg bg-[#51ACFB] text-white border-none"
             >
-              <div className="pb-3 border-b border-b-gray-200">
-                <li className="text-sm font-bold">{user.displayName}</li>
-                <li className="text-xs">{user.email}</li>
-              </div>
-              <li className="mt-3">
-                <Link to={"/profile"}><FaUser /> Profile</Link>
-              </li>
-              <li>
-                <a><FaGear /> Settings</a>
-              </li>
-              <li>
-                <button
-                  onClick={signOutUser}
-                  className="btn btn-xs text-left bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
-                >
-                  <IoLogOut /> Logout
-                </button>
-              </li>
-            </ul>
-          </div>
-        ) : ( */}
-       
-          <Link
-            to={"/auth/login"}
-            className="btn rounded-md text-lg bg-[#51ACFB] text-white border-none"
-          >
-            <IoLogIn /> Login
-          </Link>
+              <IoLogIn /> Login
+            </Link>
           {/* )} */}
         </div>
       </div>
