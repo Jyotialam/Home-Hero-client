@@ -1,0 +1,116 @@
+import React, { use } from 'react';
+import { AuthContext } from '../../Contexts/AuthContext';
+import formImg from "../../assets/login-form-img.jpg";
+import { Link, useLocation, useNavigate } from 'react-router';
+import { FaGoogle } from "react-icons/fa";
+
+const Login = () => {
+//   const {signInUser,signInWithGoogle} = use(AuthContext)
+//   console.log(signInUser,signInWithGoogle);
+//   const location = useLocation();
+//   const navigate = useNavigate();
+
+//   handle email login
+const handleLogIn = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    console.log(email, password);
+//     signInUser(email, password)
+//       .then((result) => {
+//         console.log(result.user);
+//         event.target.reset();
+//         navigate(location.state || "/");
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+  };
+
+
+//   handle google sign in
+   const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-red-200 rounded-2xl">
+      {/* Parent container */}
+      <div className="flex w-11/12 h-[80vh] bg-white rounded-2xl overflow-hidden">
+        {/* Right side (form) */}
+        <div className="w-1/2 flex justify-center items-center bg-base-100">
+          <div className="card w-10/12 shadow-2xl">
+            <div className="card-body">
+              <h1 className="text-4xl font-bold mb-4">
+                Login now <span className="text-[#51ACFB]">for Services!</span>
+              </h1>
+              {/* form */}
+              <form onSubmit={handleLogIn}>
+              <fieldset className="fieldset">
+                {/* email */}
+                <label className="label font-bold">Email</label>
+                <input
+                  type="email"
+                  name='email'
+                  className="input font-light text-gray-400  focus:border-0 focus:outline-gray-200 w-full"
+                  placeholder="Your Email"
+                />
+                <label className="label font-bold">Password</label>
+                <input
+                  type="password"
+                  name='password'
+                  className="input font-light text-gray-400  focus:border-0 focus:outline-gray-200 w-full"
+                  placeholder="********"
+                />
+                <div className="mt-2">
+                  <a className="link link-hover text-blue-500">
+                    Forgot password?
+                  </a>
+                </div>
+                <button className="btn btn-neutral border-none text-lg mt-4 w-full bg-[#51ACFB] hover:bg-blue-500">
+                  Login
+                </button>
+              </fieldset>
+              </form>
+              {/*  */}
+              <button
+          onClick={handleGoogleSignIn}
+          className="btn bg-white rounded-full text-black border-[#e5e5e5]"
+        >
+          <FaGoogle />
+          Login with Google
+        </button>
+        <p className="text-center">
+          New to our website? Please  <Link
+            className="text-blue-500 hover:text-blue-800"
+            to="/auth/register"
+          >
+             Register
+          </Link>
+        </p>
+            </div>
+          </div>
+        </div>
+        {/*  */}
+        {/* Left side (image) */}
+        <div className="w-1/2 h-full">
+          <img
+            src={formImg}
+            alt="Login visual"
+            className="w-full h-full object-cover rounded-4xl"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

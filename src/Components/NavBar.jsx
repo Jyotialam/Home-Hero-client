@@ -9,8 +9,8 @@ import { ImBoxAdd } from "react-icons/im";
 import userIcon from "../assets/user.png";
 
 // import { div } from "framer-motion/client";
-import { use } from "react";
-import { AuthContext } from "../Contexts/AuthContext";
+// import { use } from "react";
+// import { AuthContext } from "../Contexts/AuthContext";
 
 
 const NavBar = () => {
