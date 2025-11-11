@@ -3,18 +3,17 @@ import { GoHomeFill } from "react-icons/go";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
 import { FaGear, FaUser } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
-import logoImg from "../assets/home-logo.jpg";
-import { MdHomeRepairService } from "react-icons/md";
+import logoImg from "../assets/final-logo.png";
+import { MdAddToPhotos, MdHomeRepairService } from "react-icons/md";
 import { ImBoxAdd } from "react-icons/im";
 import userIcon from "../assets/user.png";
 
 // import { div } from "framer-motion/client";
-// import { use } from "react";
-// import { AuthContext } from "../Contexts/AuthContext";
-
+import { use } from "react";
+import { AuthContext } from "../Contexts/AuthContext";
 
 const NavBar = () => {
-  // const { user, signOutUser } = use(AuthContext);
+  const { user, signOutUser } = use(AuthContext);
   const pageLinks = (
     <>
       <li>
@@ -75,7 +74,7 @@ const NavBar = () => {
             }`
           }
         >
-          <FaUser size={17} /> My Bookings
+          <MdAddToPhotos size={17} /> My Bookings
         </NavLink>
       </li>
     </>
@@ -121,20 +120,19 @@ const NavBar = () => {
 
         {/* Center */}
         <div className="navbar-center hidden md:flex">
-          <ul className="menu menu-horizontal px-1 gap-10">{pageLinks}</ul>
+          <ul className="menu menu-horizontal px-1 gap-4">{pageLinks}</ul>
         </div>
 
         {/* Right */}
         <div className="navbar-end gap-3">
-          <img src={userIcon} alt="" className="rounded-full"/>
-          {/* {user ? (
+          {user ? (
             <div className="dropdown dropdown-end z-50">
               <div
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-9 border-2 border-white rounded-full">
+                <div className="w-[50px] border-2 border-white rounded-full">
                   <img
                     alt="User"
                     referrerPolicy="no-referrer"
@@ -160,24 +158,22 @@ const NavBar = () => {
                     <FaGear /> Settings
                   </a>
                 </li>
-                <li>
-                  <button
-                    onClick={signOutUser}
-                    className="btn btn-xs text-left bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
-                  >
-                    <IoLogOut /> Logout
-                  </button>
-                </li>
               </ul>
+              <button
+                onClick={signOutUser}
+                className="btn rounded-md ml-3 text-lg bg-[#51ACFB] text-white border-none"
+              >
+                <IoLogOut /> Logout
+              </button>
             </div>
-          ) : ( */}
+          ) : (
             <Link
               to={"/auth/login"}
               className="btn rounded-md text-lg bg-[#51ACFB] text-white border-none"
             >
               <IoLogIn /> Login
             </Link>
-          {/* )} */}
+          )}
         </div>
       </div>
     </div>

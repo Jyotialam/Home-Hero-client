@@ -3,12 +3,13 @@ import { AuthContext } from '../../Contexts/AuthContext';
 import formImg from "../../assets/login-form-img.jpg";
 import { Link, useLocation, useNavigate } from 'react-router';
 import { FaGoogle } from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 const Login = () => {
-//   const {signInUser,signInWithGoogle} = use(AuthContext)
+  const {signInUser,signInWithGoogle} = use(AuthContext)
 //   console.log(signInUser,signInWithGoogle);
-//   const location = useLocation();
-//   const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
 
 //   handle email login
 const handleLogIn = (event) => {
@@ -17,15 +18,17 @@ const handleLogIn = (event) => {
     const password = event.target.password.value;
 
     console.log(email, password);
-//     signInUser(email, password)
-//       .then((result) => {
-//         console.log(result.user);
-//         event.target.reset();
-//         navigate(location.state || "/");
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
+    signInUser(email, password)
+      .then((result) => {
+        // console.log(result.user);
+        toast.success("Successfully signed in with Email")
+        event.target.reset();
+        navigate(location.state || "/");
+      })
+      .catch((error) => {
+        // console.log(error);
+        toast.error(error.message)
+      });
   };
 
 
@@ -33,11 +36,13 @@ const handleLogIn = (event) => {
    const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
+        toast.success("Successfully signed in with Google")
         navigate(location?.state || "/");
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        toast.error(error.message)
       });
   };
 
