@@ -136,7 +136,7 @@ const NavBar = () => {
                   <img
                     alt="User"
                     referrerPolicy="no-referrer"
-                    src={user.photoURL || userIcon}
+                    src={user.photoURL}
                   />
                 </div>
               </div>
@@ -167,12 +167,16 @@ const NavBar = () => {
               </button>
             </div>
           ) : (
-            <Link
-              to={"/auth/login"}
-              className="btn rounded-md text-lg bg-[#51ACFB] text-white border-none"
-            >
-              <IoLogIn /> Login
-            </Link>
+            <div className="flex justify-center items-center">
+              <img src={userIcon} alt="" className="w-[50px] border-2 border-white rounded-full" />
+
+              <Link
+                to={"/auth/login"}
+                className="btn rounded-md ml-3 text-lg bg-[#51ACFB] text-white border-none"
+              >
+                <IoLogIn /> Login
+              </Link>
+            </div>
           )}
         </div>
       </div>

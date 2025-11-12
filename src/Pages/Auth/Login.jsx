@@ -84,7 +84,7 @@ const handleLogIn = (event) => {
                     Forgot password?
                   </a>
                 </div>
-                <button className="btn btn-neutral border-none text-lg mt-4 w-full bg-[#51ACFB] hover:bg-blue-500">
+                <button className="mt-3 btn text-white hover:bg-blue-600  btn-neutral border-none text-lg w-full bg-[#51ACFB]">
                   Login
                 </button>
               </fieldset>
@@ -92,7 +92,7 @@ const handleLogIn = (event) => {
               {/*  */}
               <button
           onClick={handleGoogleSignIn}
-          className="btn bg-white rounded-full text-black border-[#e5e5e5]"
+          className="mt-3 btn text-white hover:bg-blue-600  btn-neutral border-none text-lg w-full bg-[#51ACFB]"
         >
           <FaGoogle />
           Login with Google

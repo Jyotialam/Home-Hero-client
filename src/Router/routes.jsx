@@ -5,6 +5,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import Profile from "../Pages/Profile";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
+import Services from "../Pages/Services";
 
 export const router = createBrowserRouter([
     {
@@ -16,7 +17,12 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home/>,                  
-                // loader: () => fetch('http://localhost:3000/top-services')
+                
+            },
+            {
+                path: "/services",
+                element: <Services/>  ,              
+                loader: () => fetch('http://localhost:3000/services')
             },
     //         {
     //     path: "/profile",

@@ -1,0 +1,191 @@
+[
+  {
+    "name": "Commercial Plumbing",
+    "category": "Plumbing",
+    "price": 120,
+    "description": "Our expert commercial plumbing service is designed for businesses, offices, and commercial buildings that require reliable water systems and drainage solutions. From repairing leaks and replacing pipelines to installing water heaters, faucets, and filtration systems, we handle all commercial plumbing needs with professionalism and care. Our certified plumbers ensure minimal disruption to your business operations while maintaining top-quality safety and hygiene standards.",
+    "image": "https://ibb.co.com/nNJP00p1",
+    "providerName": "John Doe",
+    "providerEmail": "john@example.com"
+  },
+  {
+    "name": "Deep Clean Move-In/Out",
+    "category": "Cleaning",
+    "price": 150,
+    "description": "Our Deep Clean Move-In/Out package provides an all-in-one professional cleaning service for tenants, homeowners, or landlords preparing for move-ins or move-outs. It includes floor scrubbing, kitchen and bathroom sanitization, dusting of all surfaces, and deep stain removal from walls, carpets, and tiles. Whether you are moving into a new home or handing over a property, this service ensures every corner is spotless and ready for the next chapter.",
+    "image": "https://ibb.co.com/5gKm91wg",
+    "providerName": "Jane Smith",
+    "providerEmail": "jane@example.com"
+  },
+  {
+    "name": "Office Cleaning",
+    "category": "Cleaning",
+    "price": 100,
+    "description": "Our Office Cleaning service ensures your workplace remains healthy, productive, and welcoming. We provide daily or scheduled cleaning for desks, floors, glass partitions, restrooms, and communal areas. Using eco-friendly cleaning agents and professional tools, our trained cleaners eliminate dust, allergens, and germs to maintain a fresh and organized office environment that reflects your company’s professionalism.",
+    "image": "https://ibb.co.com/DgwByzYY",
+    "providerName": "Mike Brown",
+    "providerEmail": "mike@example.com"
+  },
+  {
+    "name": "Office Deep Cleaning",
+    "category": "Cleaning",
+    "price": 180,
+    "description": "Our Office Deep Cleaning service focuses on sanitizing every detail of your workspace — from carpet shampooing and furniture steam cleaning to disinfecting workstations, phones, and keyboards. This service is ideal for large corporate offices or small businesses aiming to maintain a hygienic, germ-free environment. We use industry-grade cleaning solutions that are safe for electronics and upholstery, ensuring your office looks and feels brand new.",
+    "image": "https://ibb.co.com/3mF4cWHg",
+    "providerName": "Anna Lee",
+    "providerEmail": "anna@example.com"
+  },
+  {
+    "name": "Rental Cleaning",
+    "category": "Cleaning",
+    "price": 130,
+    "description": "Our Rental Cleaning service is perfect for tenants and property owners who want their rental spaces to look immaculate. We handle full deep cleaning of bathrooms, kitchens, bedrooms, and living spaces, including stain removal, appliance cleaning, and odor elimination. Whether you’re moving out or preparing for new tenants, we ensure the property meets top hygiene and presentation standards.",
+    "image": "https://ibb.co.com/hxbqcyW2",
+    "providerName": "Robert Green",
+    "providerEmail": "robert@example.com"
+  },
+  {
+    "name": "Residential Plumbing",
+    "category": "Plumbing",
+    "price": 110,
+    "description": "Our Residential Plumbing service provides complete plumbing care for your home — from leak detection and faucet installation to bathroom and kitchen upgrades. We ensure all systems work efficiently with long-term reliability. Our team uses modern diagnostic tools and durable fittings to prevent future issues, guaranteeing peace of mind for homeowners and tenants alike.",
+    "image": "https://ibb.co.com/chyqhfdr",
+    "providerName": "Emma White",
+    "providerEmail": "emma@example.com"
+  },
+  {
+    "name": "Service & Repair",
+    "category": "Maintenance",
+    "price": 90,
+    "description": "Our Service & Repair package offers quick and dependable maintenance for all your household and utility systems. We handle plumbing leaks, electrical faults, appliance malfunctions, and general wear-and-tear issues. Our technicians are trained to identify root causes and deliver cost-effective, lasting solutions. It’s the perfect service to keep your home or office in top condition without stress.",
+    "image": "https://ibb.co.com/whTsWJx9",
+    "providerName": "Chris Black",
+    "providerEmail": "chris@example.com"
+  },
+  {
+    "name": "Sofa Cleaning",
+    "category": "Cleaning",
+    "price": 60,
+    "description": "Our Sofa Cleaning service restores the freshness and appearance of your sofa using advanced steam cleaning and vacuum extraction methods. We remove stains, odors, and allergens from all fabric types, including leather and suede. With our non-toxic cleaning solutions, your furniture will look cleaner, smell fresher, and last longer — making your living room more inviting and hygienic.",
+    "image": "https://ibb.co.com/LB3Z54S",
+    "providerName": "Laura Grey",
+    "providerEmail": "laura@example.com"
+  },
+  {
+    "name": "Home Cleaning",
+    "category": "Cleaning",
+    "price": 80,
+    "description": "Our Home Cleaning service covers every area of your house — bedrooms, bathrooms, kitchen, and living spaces. We dust, mop, sanitize, and polish surfaces to remove dirt, bacteria, and stains. This all-in-one cleaning solution helps busy homeowners maintain a neat, healthy, and pleasant living space without the hassle of daily chores.",
+    "image": "https://ibb.co.com/nN76XNsZ",
+    "providerName": "Olivia Taylor",
+    "providerEmail": "olivia@example.com"
+  },
+  {
+    "name": "Outdoor Exterior Services",
+    "category": "Maintenance",
+    "price": 170,
+    "description": "Our Outdoor Exterior Services ensure that your building exterior, driveway, garden areas, and outdoor walls are always clean and well-maintained. We offer pressure washing, gutter cleaning, and fence repair, along with debris removal. This service enhances your property’s curb appeal while protecting it from dirt buildup, mold, and weather-related damage.",
+    "image": "https://ibb.co.com/chhhK3WN",
+    "providerName": "Ryan Cooper",
+    "providerEmail": "ryan@example.com"
+  },
+  {
+    "name": "Sofa Soft Cleaning",
+    "category": "Cleaning",
+    "price": 65,
+    "description": "Our Sofa Soft Cleaning service is designed for delicate and luxury fabrics that require special care. We use gentle, fabric-safe cleaning agents and microfiber tools to preserve texture and color while eliminating stains and allergens. Ideal for velvet, linen, and cotton upholstery, this service gives your furniture a fresh, soft, and rejuvenated look.",
+    "image": "https://ibb.co.com/N6jPcFFS",
+    "providerName": "Ella Brooks",
+    "providerEmail": "ella@example.com"
+  },
+  {
+    "name": "Grid Link Solutions",
+    "category": "IT Services",
+    "price": 210,
+    "description": "Grid Link Solutions provides advanced networking setup and maintenance for homes and businesses. We specialize in Wi-Fi coverage optimization, LAN/WAN configuration, server connections, and smart home integrations. Our engineers ensure stable, high-speed connectivity with minimal downtime — perfect for offices, co-working spaces, or modern smart homes.",
+    "image": "https://ibb.co.com/0pL0W24f",
+    "providerName": "Luca Perez",
+    "providerEmail": "luca@example.com"
+  },
+  {
+    "name": "General Repairs Services",
+    "category": "Maintenance",
+    "price": 95,
+    "description": "Our General Repairs Services cover everything from minor fixes to essential home maintenance. We handle electrical issues, leaky faucets, broken hinges, loose fittings, and more. This service ensures your property remains safe, functional, and comfortable, with professional technicians who provide fast and reliable workmanship.",
+    "image": "https://ibb.co.com/JjX32Hph",
+    "providerName": "Amelia Scott",
+    "providerEmail": "amelia@example.com"
+  },
+  {
+    "name": "ElectroNex Services",
+    "category": "Electrical",
+    "price": 160,
+    "description": "ElectroNex Services provides complete electrical installation and troubleshooting for residential and commercial spaces. Our certified electricians handle switchboards, lighting systems, and smart device setups. We ensure energy efficiency, safety, and long-term reliability in every project. Whether you’re building a new property or upgrading an old one, we’ve got you covered.",
+    "image": "https://ibb.co.com/39WYvwPt",
+    "providerName": "Jacob Turner",
+    "providerEmail": "jacob@example.com"
+  },
+  {
+    "name": "Door Window Repairs",
+    "category": "Carpentry",
+    "price": 85,
+    "description": "Our Door and Window Repairs service focuses on restoring functionality, alignment, and aesthetics of your wooden or aluminum frames. We fix broken hinges, jammed locks, and cracked panels, and can even replace old fittings with modern ones. Our carpenters use precision tools and premium materials to ensure long-lasting performance and a flawless finish.",
+    "image": "https://ibb.co.com/jvkwbM3G",
+    "providerName": "Isabella Morgan",
+    "providerEmail": "isabella@example.com"
+  },
+  {
+    "name": "Current Wave Tech",
+    "category": "Electrical",
+    "price": 140,
+    "description": "Current Wave Tech provides safe and efficient electrical wiring, current flow testing, and power system inspection services. We help detect overloads, improve circuit performance, and upgrade old systems to meet modern standards. Our technicians ensure that your electrical setup operates safely and smoothly, protecting both appliances and occupants.",
+    "image": "https://ibb.co.com/BVrRwxjP",
+    "providerName": "William Carter",
+    "providerEmail": "william@example.com"
+  },
+  {
+    "name": "Circuit Pro Electric",
+    "category": "Electrical",
+    "price": 175,
+    "description": "Circuit Pro Electric specializes in advanced circuit design, installation, and fault repair. Our experts handle everything from panel replacements to breaker configuration and surge protection. We provide high-quality electrical work that enhances energy efficiency and ensures safety in residential and commercial environments.",
+    "image": "https://ibb.co.com/s9cKVr99",
+    "providerName": "Grace Evans",
+    "providerEmail": "grace@example.com"
+  },
+  {
+    "name": "Hardwood Flooring",
+    "category": "Carpentry",
+    "price": 220,
+    "description": "Our Hardwood Flooring service brings timeless elegance and durability to your home or office. We offer a wide range of wood types, finishes, and patterns. Our skilled carpenters handle precise cutting, fitting, and polishing to achieve a flawless look. We also provide maintenance tips to help you preserve the beauty and longevity of your floors.",
+    "image": "https://ibb.co.com/kWK3tzN",
+    "providerName": "Daniel Foster",
+    "providerEmail": "daniel@example.com"
+  },
+  {
+    "name": "Indoor Furniture",
+    "category": "Carpentry",
+    "price": 180,
+    "description": "Our Indoor Furniture service includes custom design, crafting, and assembly of wooden furniture such as tables, wardrobes, cabinets, and shelves. Whether you prefer modern minimalism or classic craftsmanship, our carpenters create pieces tailored to your taste and interior design, using high-quality timber and durable finishes.",
+    "image": "https://ibb.co.com/xSH7pRSB",
+    "providerName": "Emily Rogers",
+    "providerEmail": "emily@example.com"
+  },
+  {
+    "name": "Outdoor Furniture",
+    "category": "Carpentry",
+    "price": 190,
+    "description": "Our Outdoor Furniture service offers weather-resistant furniture pieces for patios, balconies, and gardens. Each product is built from durable, treated wood to withstand heat, rain, and humidity. From outdoor dining sets to custom benches, we combine aesthetics with comfort and long-lasting protection.",
+    "image": "https://ibb.co.com/LLzTPmg",
+    "providerName": "Matthew Hughes",
+    "providerEmail": "matthew@example.com"
+  },
+  {
+    "name": "Home Wood Work",
+    "category": "Carpentry",
+    "price": 160,
+    "description": "Our Home Wood Work service covers every wooden element in your home — including cabinets, doors, windows, stairs, and wall panels. We provide custom designs, repairs, and refinishing using premium wood materials. Our team pays close attention to detail to ensure each piece adds beauty, strength, and warmth to your living space.",
+    "image": "https://ibb.co.com/BK6FvZX6",
+    "providerName": "Sophia Bennett",
+    "providerEmail": "sophia@example.com"
+  }
+]
