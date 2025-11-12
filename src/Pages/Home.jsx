@@ -2,12 +2,16 @@
 // import { useLoaderData } from "react-router";
 // import Banner from "../../components/Banner";
 
+import { useEffect } from "react";
 import Banner from "../Components/Banner";
 
 // import { ModelCard } from "../../components/ModelCard";
 const Home = () => {
     // const data = useLoaderData()
     // console.log(data)
+      useEffect(() => {
+        document.title = "Home | Home-hero";
+      }, []);
     return (
         <div>
             <Banner/>

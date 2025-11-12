@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useRouteError } from "react-router";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 
 const ErrorPage = () => {
   const error = useRouteError();
+
+    useEffect(() => {
+      document.title = "Error-Page | Home-hero";
+    }, []);
   return (
     <div className="flex flex-col min-h-screen w-full">
       <NavBar />

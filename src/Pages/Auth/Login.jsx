@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useEffect } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import formImg from "../../assets/login-form-img.jpg";
 import { Link, useLocation, useNavigate } from 'react-router';
@@ -11,6 +11,10 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+    useEffect(() => {
+      document.title = "Login | Home-hero";
+    }, []);
+
 //   handle email login
 const handleLogIn = (event) => {
     event.preventDefault();
@@ -20,7 +24,7 @@ const handleLogIn = (event) => {
     console.log(email, password);
     signInUser(email, password)
       .then((result) => {
-        // console.log(result.user);
+        console.log(result.user);
         toast.success("Successfully signed in with Email")
         event.target.reset();
         navigate(location.state || "/");
@@ -36,7 +40,7 @@ const handleLogIn = (event) => {
    const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        // console.log(result.user);
+        console.log(result.user);
         toast.success("Successfully signed in with Google")
         navigate(location?.state || "/");
       })

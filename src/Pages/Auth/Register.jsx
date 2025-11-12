@@ -1,5 +1,5 @@
-import React, { use } from "react";
-import { Link, useNavigate } from "react-router";
+import React, { use, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa6";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -7,20 +7,25 @@ import { toast } from "react-toastify";
 const Register = () => {
   const { createUser, updateUserProfile, signInWithGoogle } = use(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    document.title = "Register | Home-hero";
+  }, []);
 
   const handleRegister = (event) => {
     event.preventDefault();
-    const displayName = event.target.displayName.value;
+    const name = event.target.name.value;
     const photoURL = event.target.photoURL.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
-        updateUserProfile(displayName, photoURL);
+        updateUserProfile(name, photoURL);
         toast.success("User created successfully!");
+        navigate(location.state?.from?.pathname || "/");
       })
       .catch((error) => {
         console.log(error);
@@ -33,7 +38,7 @@ const Register = () => {
       .then((result) => {
         toast.success("User created successfully!");
         console.log(result.user);
-        navigate("/");
+        navigate(location.state?.from?.pathname || "/");
       })
       .catch((error) => {
         console.log(error);
@@ -51,7 +56,7 @@ const Register = () => {
             <label className="label">Name</label>
             <input
               type="text"
-              name="displayName"
+              name="name"
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Name"
             />
@@ -79,7 +84,7 @@ const Register = () => {
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Password"
             />
-            
+
             <button className="btn text-white mt-4 rounded-full bg-linear-to-r from-pink-500 to-red-600">
               Register
             </button>
