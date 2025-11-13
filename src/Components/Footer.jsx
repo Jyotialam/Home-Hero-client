@@ -1,8 +1,6 @@
 import { Link } from "react-router";
 import { Facebook, Instagram, Mail } from "lucide-react";
-import { FaHome } from "react-icons/fa";
 import { PiXLogoBold } from "react-icons/pi";
-import logoImg from "../assets/final-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,9 +12,9 @@ const Footer = () => {
         <div className="">
           <Link
             to={"/"}
-            className=" text-2xl font-bold flex flex-col text-white"
+            className=" text-xl font-bold flex flex-col text-white"
           >
-            <img src={logoImg} alt="" className="w-13 rounded-3xl" /> HomeHero
+             HomeHero
           </Link>
 
           <ul className="space-y-2 mt-4">

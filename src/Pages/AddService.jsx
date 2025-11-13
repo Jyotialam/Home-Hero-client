@@ -2,8 +2,10 @@ import React, { useEffect, use } from "react";
 import Img from "../assets/hero_image_01.png";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Contexts/AuthContext";
+import { useNavigate } from "react-router";
 
 const AddService = () => {
+  const navigate = useNavigate()
   useEffect(() => {
     document.title = "Add Service | Home-Hero";
   }, []);
@@ -30,6 +32,7 @@ console.log(formData);
     })
       .then((res) => res.json())
       .then(() => {
+         navigate("/my-services")
         toast.success("Service added successfully!");
         e.target.reset();
       })
