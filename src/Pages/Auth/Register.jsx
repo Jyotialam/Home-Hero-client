@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa6";
 import { AuthContext } from "../../Contexts/AuthContext";
 import { toast } from "react-toastify";
-import formImg from "../../assets/login-form-img.jpg"; // Login page-এর মতো একই ইমেজ
+import formImg from "../../assets/login-form-img.jpg";
 
 const Register = () => {
   const { createUser, updateUserProfile, signInWithGoogle } = use(AuthContext);
@@ -14,6 +14,12 @@ const Register = () => {
     document.title = "Register | Home-hero";
   }, []);
 
+  //
+  const validatePassword = (password) => {
+    const pattern = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    return pattern.test(password);
+  };
+
   const handleRegister = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -21,13 +27,23 @@ const Register = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
+    if (!validatePassword(password)) {
+      toast.error(
+        "Password must be at least 6 characters with 1 uppercase and 1 lowercase letter"
+      );
+      return;
+    }
+
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
-        updateUserProfile(name, photoURL);
-        toast.success("User created successfully!");
-        event.target.reset();
-        navigate(location.state?.from?.pathname || "/");
+        console.log(result);
+        updateUserProfile(name, photoURL)
+          .then(() => {
+            toast.success("User created successfully!");
+            event.target.reset();
+            navigate(location.state?.from?.pathname || "/");
+          })
+          .catch((err) => toast.error(err.message));
       })
       .catch((error) => {
         console.log(error);
@@ -38,8 +54,8 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
+        console.log(result);
         toast.success("User created successfully!");
-        console.log(result.user);
         navigate(location.state?.from?.pathname || "/");
       })
       .catch((error) => {
@@ -49,8 +65,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-red-200 rounded-2xl">
-      {/* Parent container */}
+    <div className="flex justify-center items-center min-h-screen bg-blue-100 rounded-2xl">
       <div className="flex w-11/12 min-h-[90vh] bg-white rounded-2xl overflow-hidden">
         {/* Right side (form) */}
         <div className="w-1/2 flex justify-center items-center bg-base-100">
@@ -61,7 +76,6 @@ const Register = () => {
                 <span className="text-[#51ACFB]">to join Home-hero!</span>
               </h1>
 
-              {/* form */}
               <form onSubmit={handleRegister}>
                 <fieldset className="fieldset">
                   <label className="label font-bold">Name</label>
@@ -96,7 +110,7 @@ const Register = () => {
                     placeholder="********"
                   />
 
-                  <button className="mt-3 btn text-white hover:bg-blue-600  btn-neutral border-none text-lg w-full bg-[#51ACFB]">
+                  <button className="mt-3 btn text-white hover:bg-blue-600 btn-neutral border-none text-lg w-full bg-[#51ACFB]">
                     Register
                   </button>
                 </fieldset>
@@ -104,7 +118,7 @@ const Register = () => {
 
               <button
                 onClick={handleGoogleSignIn}
-                className="mt-3 btn text-white hover:bg-blue-600  btn-neutral border-none text-lg w-full bg-[#51ACFB]"
+                className="mt-3 btn text-white hover:bg-blue-600 btn-neutral border-none text-lg w-full bg-[#51ACFB]"
               >
                 <FaGoogle />
                 Sign up with Google

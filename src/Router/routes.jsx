@@ -6,6 +6,10 @@ import Profile from "../Pages/Profile";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import Services from "../Pages/Services";
+import AddService from "../Pages/AddService";
+import PrivateRoute from "./PrivateRoute";
+import ServiceDetails from "../Pages/ServiceDetails";
+import UpdateService from "../Pages/UpdateService";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +30,35 @@ export const router = createBrowserRouter([
         element: <Services />,
         loader: () => fetch("http://localhost:3000/services"),
       },
+      {
+        path: "/add-service",
+        element: (
+          <PrivateRoute>
+            <AddService />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/service-details/:id",
+        element: (
+          <PrivateRoute>
+            <ServiceDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/services/${params.id}`),
+      },
+      {
+        path: "/update-service/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateService />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/services/${params.id}`),
+      },
+
       // {
       //   path: "/profile",
       //   element: (

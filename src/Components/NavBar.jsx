@@ -161,7 +161,7 @@ const NavBar = () => {
               </ul>
               <button
                 onClick={signOutUser}
-                className="btn rounded-md ml-3 text-lg bg-[#51ACFB] text-white border-none"
+                className="btn rounded-md ml-3 text-lg bg-[#51ACFB] text-white border-none hover:bg-blue-500"
               >
                 <IoLogOut /> Logout
               </button>
@@ -172,7 +172,7 @@ const NavBar = () => {
 
               <Link
                 to={"/auth/login"}
-                className="btn rounded-md ml-3 text-lg bg-[#51ACFB] text-white border-none"
+                className="btn rounded-md ml-3 text-lg bg-[#51ACFB] text-white border-none hover:bg-blue-500"
               >
                 <IoLogIn /> Login
               </Link>

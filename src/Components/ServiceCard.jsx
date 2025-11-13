@@ -2,7 +2,8 @@
 import { Link } from "react-router";
 
 const ServiceCard = ({ service }) => {
-  const { name, image, category, description, _id,price } = service;
+  const { name, image, category, description, _id,price,
+providerEmail } = service;
 
   return (
     <div>
@@ -20,6 +21,7 @@ const ServiceCard = ({ service }) => {
           <div className="badge text-xs badge-xs text-white text-center bg-[#5184AF] ">
             {category}
           </div>
+          <p>{providerEmail}</p>
           <p className="line-clamp-1">{description}</p>
 
           <div className="card-actions justify-between items-center mt-4">

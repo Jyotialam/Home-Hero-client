@@ -21,15 +21,15 @@ const teamMembers = [
     img: team4,
   },
   {
-    name: "Peter Electrician",
-    role: "Plumber",
+    name: "Peter Schmeichel",
+    role: "Electrician",
     img: team6,
   },
 ];
 
 export default function MeetOurTeam() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white pt-20">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold mb-12">
           Meet our <span className="text-blue-500">team</span>
