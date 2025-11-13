@@ -6,6 +6,7 @@ import Banner from "../Components/Banner";
 import { useLoaderData } from "react-router";
 import ServiceCard from "../Components/ServiceCard";
 import CustomerExperience from "../Components/CustomerExperience";
+import MeetOurTeam from "../Components/MeetOurTeam";
 
 const Home = () => {
   const data = useLoaderData();
@@ -32,6 +33,7 @@ const Home = () => {
       </div>
       {/* testimonials */}
       <CustomerExperience/>
+      <MeetOurTeam/>
     </div>
   );
 };
