@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const MyServices = () => {
   const { user } = useContext(AuthContext);
@@ -22,7 +23,7 @@ const MyServices = () => {
         setLoading(false);
       })
       .catch((err) => {
-        
+        console.log(err);
         toast.error("Failed to fetch services");
         setLoading(false);
       });
@@ -91,7 +92,7 @@ const MyServices = () => {
               <th className="py-3 px-4 border-b text-left">Category</th>
               <th className="py-3 px-4 border-b text-left">Price ($)</th>
               <th className="py-3 px-4 border-b text-left">Provider</th>
-              <th className="py-3 px-4 border-b text-left">Actions</th>
+              <th className="py-3 px-4 border-b text-right pr-15">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -102,16 +103,22 @@ const MyServices = () => {
                 <td className="py-2 px-4 border-b">{service.category}</td>
                 <td className="py-2 px-4 border-b">{service.price}</td>
                 <td className="py-2 px-4 border-b">{service.providerName}</td>
-                <td className="py-2 px-4 border-b flex gap-2">
-                  <button className="btn btn-sm bg-[#51ACFB] text-white hover:bg-blue-600">
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(service._id)}
-                    className="btn btn-sm bg-red-500 text-white hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
+                <td className="py-2 px-4 border-b text-right">
+                  <div className="flex justify-end gap-2">
+                    <Link
+                      to={`/update-service/${service._id}`}
+                      className="btn btn-sm bg-[#51ACFB] text-white hover:bg-blue-600"
+                    >
+                      Update
+                    </Link>
+
+                    <button
+                      onClick={() => handleDelete(service._id)}
+                      className="btn btn-sm bg-red-500 text-white hover:bg-red-600"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

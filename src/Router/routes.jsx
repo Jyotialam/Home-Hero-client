@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import ServiceDetails from "../Pages/ServiceDetails";
 import UpdateService from "../Pages/UpdateService";
 import MyServices from "../Pages/MyServices";
+import MyBookings from "../Pages/MyBookings";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyServices />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-bookings",
+        element: (
+          <PrivateRoute>
+            <MyBookings />
           </PrivateRoute>
         ),
       },

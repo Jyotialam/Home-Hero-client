@@ -30,8 +30,13 @@ const ServiceDetails = () => {
       userName: user.displayName || "Anonymous",
       userEmail: user.email,
       serviceId: service._id,
-      bookingDate,
       price: service.price,
+      serviceName: service.name,
+      category: service.category,
+      providerName: service.providerName,
+      providerEmail: service.providerEmail,
+      customerEmail: user.email,
+      bookingDate,
     };
 
     try {
