@@ -5,7 +5,6 @@ import { FaGear, FaUser } from "react-icons/fa6";
 import logoImg from "../assets/final-logo.png";
 import { MdAddToPhotos, MdHomeRepairService } from "react-icons/md";
 import { ImBoxAdd } from "react-icons/im";
-import userIcon from "../assets/user.png";
 import { use, useEffect, useState } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 
@@ -91,8 +90,10 @@ const NavBar = () => {
   );
 
   return (
-    <div className="shadow-sm bg-[#5184AF] py-2 px-4 z-10">
-      <div className="navbar text-white max-w-7xl mx-auto">
+    
+      <div className="shadow-sm bg-[#5184AF] p-2 z-10 md:h-20 h-auto">
+
+      <div className="navbar text-white md:w-11/12 w-full mx-auto">
         {/* LEFT */}
         <div className="navbar-start">
           {/* Mobile dropdown */}
@@ -143,7 +144,8 @@ const NavBar = () => {
         </div>
 
         {/* RIGHT */}
-        <div className="navbar-end gap-3">
+        <div className="navbar-end gap-3 flex flex-wrap justify-end">
+
           {user ? (
             <div className="dropdown dropdown-end z-50">
               <div
