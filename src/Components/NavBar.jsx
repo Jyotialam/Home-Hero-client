@@ -91,7 +91,7 @@ const NavBar = () => {
 
   return (
     
-      <div className="shadow-sm bg-[#5184AF] p-2 z-10 md:h-20 h-auto">
+      <div className="shadow-sm bg-[#5184AF] p-2 z-10 h-auto">
 
       <div className="navbar text-white md:w-11/12 w-full mx-auto">
         {/* LEFT */}
