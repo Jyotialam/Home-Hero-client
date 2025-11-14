@@ -53,7 +53,7 @@ const handleLogIn = (event) => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-blue-100 rounded-2xl">
       {/* Parent container */}
-      <div className="flex w-11/12 h-[80vh] bg-white rounded-2xl overflow-hidden">
+      <div className="flex w-11/12 h-[80vh] bg-white rounded-l-2xl rounded-r-4xl overflow-hidden">
         {/* Right side (form) */}
         <div className="w-1/2 flex justify-center items-center bg-base-100">
           <div className="card w-10/12 shadow-2xl">

@@ -24,7 +24,7 @@ const UpdateService = () => {
       image: form.image.value,
     };
 
-    fetch(`http://localhost:3000/services/${service._id}`, {
+    fetch(`https://home-hero-server-virid.vercel.app/services/${service._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

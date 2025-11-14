@@ -15,7 +15,9 @@ const MyBookings = () => {
   useEffect(() => {
     if (!user) return;
 
-    fetch(`http://localhost:3000/my-bookings?email=${user.email}`)
+    fetch(
+      `https://home-hero-server-virid.vercel.app/my-bookings?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setBookings(data);
@@ -31,7 +33,7 @@ const MyBookings = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen text-xl">
-        Loading your bookings...
+        <span className="loading loading-bars loading-xl"></span>
       </div>
     );
   }
@@ -44,35 +46,40 @@ const MyBookings = () => {
     );
   }
 
- const handleCancel = (id) => {
-  Swal.fire({
-    title: "Cancel Booking?",
-    text: "This action cannot be undone!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, cancel it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      fetch(`http://localhost:3000/bookings/${id}`, { method: "DELETE" })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.result.deletedCount > 0) {
-            setBookings(bookings.filter((b) => b._id.toString() !== id));
-            Swal.fire("Cancelled!", "Your booking has been cancelled.", "success");
-          } else {
-            toast.error("Failed to cancel booking!");
-          }
+  const handleCancel = (id) => {
+    Swal.fire({
+      title: "Cancel Booking?",
+      text: "This action cannot be undone!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, cancel it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://home-hero-server-virid.vercel.app/bookings/${id}`, {
+          method: "DELETE",
         })
-        .catch((err) => {
-          toast.error("Error cancelling booking!");
-          console.log(err);
-        });
-    }
-  });
-};
-
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.result.deletedCount > 0) {
+              setBookings(bookings.filter((b) => b._id.toString() !== id));
+              Swal.fire(
+                "Cancelled!",
+                "Your booking has been cancelled.",
+                "success"
+              );
+            } else {
+              toast.error("Failed to cancel booking!");
+            }
+          })
+          .catch((err) => {
+            toast.error("Error cancelling booking!");
+            console.log(err);
+          });
+      }
+    });
+  };
 
   return (
     <div className="w-11/12 mx-auto p-4 md:p-6 lg:p-8">

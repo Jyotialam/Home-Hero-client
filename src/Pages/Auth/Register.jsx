@@ -66,7 +66,7 @@ const Register = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-blue-100 rounded-2xl">
-      <div className="flex w-11/12 min-h-[90vh] bg-white rounded-2xl overflow-hidden">
+      <div className="flex w-11/12 min-h-[90vh] bg-white rounded-l-2xl rounded-r-4xl overflow-hidden">
         {/* Right side (form) */}
         <div className="w-1/2 flex justify-center items-center bg-base-100">
           <div className="card w-full shadow-2xl">

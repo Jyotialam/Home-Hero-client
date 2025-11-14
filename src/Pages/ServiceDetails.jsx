@@ -40,11 +40,14 @@ const ServiceDetails = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingData),
-      });
+      const res = await fetch(
+        "https://home-hero-server-virid.vercel.app/bookings",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(bookingData),
+        }
+      );
 
       const data = await res.json();
       if (data.success) {

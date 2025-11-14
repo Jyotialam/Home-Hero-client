@@ -5,7 +5,7 @@ import { AuthContext } from "../Contexts/AuthContext";
 import { useNavigate } from "react-router";
 
 const AddService = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = "Add Service | Home-Hero";
   }, []);
@@ -24,15 +24,15 @@ const AddService = () => {
       providerName: user?.displayName || "Anonymous",
       providerEmail: user?.email || "N/A",
     };
-console.log(formData);
-    fetch("http://localhost:3000/services", {
+    console.log(formData);
+    fetch("https://home-hero-server-virid.vercel.app/services", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
       .then(() => {
-         navigate("/my-services")
+        navigate("/my-services");
         toast.success("Service added successfully!");
         e.target.reset();
       })

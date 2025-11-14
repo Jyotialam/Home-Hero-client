@@ -26,7 +26,7 @@ const UpdateModel = () => {
       thumbnail: e.target.thumbnail.value,
     };
 
-    fetch(`http://localhost:3000/models/${model._id}`, {
+    fetch(`https://home-hero-server-virid.vercel.app/models/${model._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -3,10 +3,10 @@
 HomeHero is a web application that connects users with local service providers like electricians, plumbers, and cleaners. Users can book services, and providers can manage their listings.
 
 ## Live Links
-- Client Repository: [GitHub link]
-- Server Repository: [GitHub link]
-- Live Website: [Netlify/Firebase link]
-- Server Deployment: [Vercel link]
+- Client Repository: https://github.com/Jyotialam/home-hero-client
+- Server Repository: https://github.com/Jyotialam/home-hero-server
+- Live Website: https://home-hero-app.netlify.app/
+- Server Deployment: https://home-hero-server-virid.vercel.app/
 
 ## Key Features
 - Secure authentication using Firebase (Email/Password and Google login)

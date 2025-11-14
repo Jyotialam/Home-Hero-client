@@ -2,76 +2,73 @@ import { Link, NavLink } from "react-router";
 import { GoHomeFill } from "react-icons/go";
 import { IoLogIn, IoLogOut } from "react-icons/io5";
 import { FaGear, FaUser } from "react-icons/fa6";
-import { FaHome } from "react-icons/fa";
 import logoImg from "../assets/final-logo.png";
 import { MdAddToPhotos, MdHomeRepairService } from "react-icons/md";
 import { ImBoxAdd } from "react-icons/im";
 import userIcon from "../assets/user.png";
-
-// import { div } from "framer-motion/client";
 import { use } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 
 const NavBar = () => {
   const { user, signOutUser } = use(AuthContext);
-  const pageLinks = (
+
+  // ----- MENU LINKS -----
+  const publicLinks = (
     <>
       <li>
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <GoHomeFill size={20} /> Home
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to={"/services"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <MdHomeRepairService size={20} />
           Services
         </NavLink>
       </li>
+    </>
+  );
+
+  const privateLinks = (
+    <>
       <li>
         <NavLink
           to={"/add-service"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <ImBoxAdd size={16} /> Add Service
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to={"/my-services"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <MdHomeRepairService size={20} /> My Services
         </NavLink>
       </li>
+
       <li>
         <NavLink
           to={"/my-bookings"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <MdAddToPhotos size={17} /> My Bookings
@@ -83,8 +80,10 @@ const NavBar = () => {
   return (
     <div className="shadow-sm bg-[#5184AF] py-2 px-4 min-h-0 z-10">
       <div className="navbar text-white w-11/12 mx-auto">
-        {/* Left */}
+
+        {/* LEFT */}
         <div className="navbar-start">
+          {/* Mobile menu */}
           <div className="dropdown">
             <div
               tabIndex={0}
@@ -106,24 +105,30 @@ const NavBar = () => {
                 />
               </svg>
             </div>
+
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow text-gray-700"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow text-gray-700 z-10"
             >
-              {pageLinks}
+              {publicLinks}
+              {user && privateLinks}
             </ul>
           </div>
+
           <Link to={"/"} className="flex items-center gap-2 text-2xl font-bold">
             <img src={logoImg} alt="" className="w-20 rounded-3xl" /> HomeHero
           </Link>
         </div>
 
-        {/* Center */}
+        {/* CENTER (Desktop Menu) */}
         <div className="navbar-center hidden md:flex">
-          <ul className="menu menu-horizontal px-1 gap-4">{pageLinks}</ul>
+          <ul className="menu menu-horizontal px-1 gap-4">
+            {publicLinks}
+            {user && privateLinks}
+          </ul>
         </div>
 
-        {/* Right */}
+        {/* RIGHT */}
         <div className="navbar-end gap-3">
           {user ? (
             <div className="dropdown dropdown-end z-50">
@@ -140,6 +145,7 @@ const NavBar = () => {
                   />
                 </div>
               </div>
+
               <ul
                 tabIndex="-1"
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow text-gray-700"
@@ -148,17 +154,20 @@ const NavBar = () => {
                   <li className="text-sm font-bold">{user.displayName}</li>
                   <li className="text-xs">{user.email}</li>
                 </div>
+
                 <li className="mt-3">
                   <Link to={"/profile"}>
                     <FaUser /> Profile
                   </Link>
                 </li>
+
                 <li>
                   <a>
                     <FaGear /> Settings
                   </a>
                 </li>
               </ul>
+
               <button
                 onClick={signOutUser}
                 className="btn rounded-md ml-3 text-lg bg-[#51ACFB] text-white border-none hover:bg-blue-500"
@@ -168,13 +177,23 @@ const NavBar = () => {
             </div>
           ) : (
             <div className="flex justify-center items-center">
-              <img src={userIcon} alt="" className="w-[50px] border-2 border-white rounded-full" />
+              <img
+                src={userIcon}
+                alt=""
+                className="w-[50px] border-2 border-white rounded-full"
+              />
 
               <Link
                 to={"/auth/login"}
                 className="btn rounded-md ml-3 text-lg bg-[#51ACFB] text-white border-none hover:bg-blue-500"
               >
                 <IoLogIn /> Login
+              </Link>
+              <Link
+                to={"/auth/register"}
+                className="btn rounded-md ml-3 text-lg bg-[#51ACFB] text-white border-none hover:bg-blue-500"
+              >
+                <IoLogIn /> Register
               </Link>
             </div>
           )}

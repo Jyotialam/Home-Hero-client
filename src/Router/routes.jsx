@@ -18,19 +18,23 @@ export const router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     hydrateFallbackElement: (
-      <p className="flex justify-center items-center text-5xl">Loading...</p>
+      <div className="w-full h-screen flex items-center justify-center">
+        <span className="loading loading-bars loading-xl"></span>
+      </div>
     ),
     errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:3000/services"),
+        loader: () =>
+          fetch("https://home-hero-server-virid.vercel.app/services"),
       },
       {
         path: "/services",
         element: <Services />,
-        loader: () => fetch("http://localhost:3000/services"),
+        loader: () =>
+          fetch("https://home-hero-server-virid.vercel.app/services"),
       },
       {
         path: "/add-service",
@@ -48,7 +52,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/services/${params.id}`),
+          fetch(
+            `https://home-hero-server-virid.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/update-service/:id",
@@ -58,7 +64,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/services/${params.id}`),
+          fetch(
+            `https://home-hero-server-virid.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/my-services",
@@ -77,14 +85,14 @@ export const router = createBrowserRouter([
         ),
       },
 
-      // {
-      //   path: "/profile",
-      //   element: (
-      //     <PrivateRoute>
-      //       <Profile />
-      //     </PrivateRoute>
-      //   ),
-      // },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/auth/login",
         element: <Login />,

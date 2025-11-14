@@ -16,7 +16,9 @@ const MyServices = () => {
   useEffect(() => {
     if (!user) return;
 
-    fetch(`http://localhost:3000/my-services?email=${user.email}`)
+    fetch(
+      `https://home-hero-server-virid.vercel.app/my-services?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setServices(data);
@@ -56,7 +58,7 @@ const MyServices = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/services/${id}`, {
+        fetch(`https://home-hero-server-virid.vercel.app/services/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

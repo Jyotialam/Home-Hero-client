@@ -64,8 +64,9 @@ function MySlider() {
                   <h3 className="text-lg font-semibold">{item.title}</h3>
                   <p className="text-base">{item.desc}</p>
                   <button
-                    onClick={() => navigate("/services")} // ✅ redirect
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md w-max"
+                    onClick={() => navigate("/services")} // 
+                    className="bg-[#51ACFB] hover:bg-blue-600 text-white px-4 py-2 rounded-md w-max btn cursor-pointer"
+
                   >
                     Explore
                   </button>
