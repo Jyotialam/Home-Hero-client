@@ -1,126 +1,131 @@
-import React from 'react';
+import React, { useContext } from "react";
+import Img from "../assets/hero_image_01.png";
+import { toast } from "react-toastify";
+import { AuthContext } from "../Contexts/AuthContext";
+import { useNavigate, useLoaderData } from "react-router";
 
 const UpdateService = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
-
-export default UpdateService;
-import toast from "react-hot-toast";
-import { useLoaderData } from "react-router";
-
-const UpdateModel = () => {
   const data = useLoaderData();
-  const model = data.result;
+  const service = data?.result;
+
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
+  if (!service) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <p className="text-xl font-semibold">Service Not Found!</p>
+      </div>
+    );
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = {
-      name: e.target.name.value,
       category: e.target.category.value,
+      name: e.target.name.value,
+      price: parseFloat(e.target.price.value),
       description: e.target.description.value,
-      thumbnail: e.target.thumbnail.value,
+      image: e.target.image.value,
+      providerName: user?.displayName,
+      providerEmail: user?.email,
     };
 
-    fetch(`https://home-hero-server-virid.vercel.app/models/${model._id}`, {
+    fetch(`https://home-hero-server-virid.vercel.app/services/${service._id}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("Successfully updated!");
+      .then(() => {
+        toast.success("Service updated successfully!");
+        navigate("/my-services");
       })
-      .catch((err) => {
-        // console.log(err);
-        toast.error(err.message);
-      });
+      .catch(() => toast.error("Update failed"));
   };
 
- 
-
   return (
-    <div className="card bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
-      <div className="card-body p-6 relative">
-        <h2 className="text-2xl font-bold text-center mb-6">Update Model</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name Field */}
-          <div>
-            <label className="label font-medium">Name</label>
-            <input
-              type="text"
-              defaultValue={model.name}
-              name="name"
-              required
-              className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
-              placeholder="Enter name"
-            />
-          </div>
+    <div className="flex justify-center items-center min-h-screen bg-blue-100 py-8 px-2 dark:bg-gray-900">
+      <div className="flex flex-col md:flex-row w-full md:w-11/12 lg:w-10/12 bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+        <div className="w-full md:w-1/2 flex justify-center items-center overflow-y-auto py-10 px-4">
+          <div className="w-full md:w-11/12 lg:w-10/12">
+            <h1 className="text-3xl md:text-4xl font-bold mb-5 text-gray-900 dark:text-gray-100">
+              Update <span className="text-[#51ACFB]">Service</span>
+            </h1>
 
-          {/* Category Dropdown */}
-          <div>
-            <label className="label font-medium">Category</label>
-            <select
-              defaultValue={model.category}
-              name="category"
-              required
-              className="select w-full rounded-full focus:border-0 focus:outline-gray-200"
-            >
-              <option value="" disabled>
-                Select category
-              </option>
-              <option value="Vehicles">Vehicles</option>
-              <option value="Plants">Plants</option>
-              <option value="Foods">Foods</option>
-              <option value="Home & Living">Home & Living</option>
-              <option value="Characters">Characters</option>
-              <option value="Space">Space</option>
-              <option value="Animals">Animals</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label>Service Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  defaultValue={service.name}
+                  required
+                  className="input w-full bg-gray-100 dark:bg-gray-700"
+                />
+              </div>
 
-          {/* Description Textarea */}
-          <div>
-            <label className="label font-medium">Description</label>
-            <textarea
-              defaultValue={model.description}
-              name="description"
-              required
-              rows="3"
-              className="textarea w-full rounded-2xl focus:border-0 focus:outline-gray-200 h-[250px]"
-              placeholder="Enter description"
-            ></textarea>
-          </div>
+              <div>
+                <label>Category</label>
+                <select
+                  name="category"
+                  defaultValue={service.category}
+                  required
+                  className="select w-full bg-gray-100 dark:bg-gray-700"
+                >
+                  <option value="Plumbing">Plumbing</option>
+                  <option value="Carpentry">Carpentry</option>
+                  <option value="Electrical">Electrical</option>
+                </select>
+              </div>
 
-          {/* Thumbnail URL */}
-          <div>
-            <label className="label font-medium">Thumbnail URL</label>
-            <input
-              type="url"
-              name="thumbnail"
-              defaultValue={model.thumbnail}
-              required
-              className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
-              placeholder="https://example.com/image.jpg"
-            />
-          </div>
+              <div>
+                <label>Price</label>
+                <input
+                  type="number"
+                  name="price"
+                  defaultValue={service.price}
+                  required
+                  className="input w-full bg-gray-100 dark:bg-gray-700"
+                />
+              </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-pink-500 to-red-600 hover:from-pink-600 hover:to-red-700"
-          >
-            Update Model
-          </button>
-        </form>
+              <div>
+                <label>Description</label>
+                <textarea
+                  name="description"
+                  defaultValue={service.description}
+                  required
+                  rows="4"
+                  className="textarea w-full bg-gray-100 dark:bg-gray-700"
+                ></textarea>
+              </div>
+
+              <div>
+                <label>Image URL</label>
+                <input
+                  type="url"
+                  name="image"
+                  defaultValue={service.image}
+                  required
+                  className="input w-full bg-gray-100 dark:bg-gray-700"
+                />
+              </div>
+
+              <button className="btn w-full text-white bg-[#51ACFB]">
+                Update Service
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div className="hidden md:flex w-1/2 justify-center items-center bg-blue-50 dark:bg-gray-700">
+          <img src={Img} className="w-10/12" />
+        </div>
       </div>
     </div>
+  );
+};
 
+export default UpdateService;

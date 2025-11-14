@@ -7,14 +7,14 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#001E38] py-8 px-4 mt-20">
-      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="w-11/12 mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
         {/* Brand */}
         <div className="">
           <Link
             to={"/"}
             className=" text-xl font-bold flex flex-col text-white"
           >
-             HomeHero
+            HomeHero
           </Link>
 
           <ul className="space-y-2 mt-4">
@@ -145,10 +145,14 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-blue-300 mt-8 pt-4 text-center">
-        <p className="text-sm text-gray-200">
-          © {currentYear} HomeHero. All Rights Reserved.
-          <span className="ml-4">
+      <div className="border-t border-blue-300 mt-8 pt-4">
+        <div className="w-full flex flex-col md:flex-row justify-center items-center text-center">
+          <p className="text-sm text-gray-200">
+            © {currentYear} HomeHero. All Rights Reserved.
+          </p>
+
+          {/* Show only on md & lg */}
+          <span className="ml-4 hidden md:inline text-sm text-gray-200">
             <Link to="/" className="hover:text-yellow-300 mr-3">
               Privacy Policy
             </Link>
@@ -156,7 +160,7 @@ const Footer = () => {
               Terms of Service
             </Link>
           </span>
-        </p>
+        </div>
       </div>
     </footer>
   );

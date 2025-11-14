@@ -12,28 +12,26 @@ import { AuthContext } from "../Contexts/AuthContext";
 const NavBar = () => {
   const { user, signOutUser } = use(AuthContext);
 
-  const [theme,setTheme] = useState(localStorage.getItem('theme') || "light")
-  useEffect(()=>{
-const html = document.querySelector("html");
-html.setAttribute("data-theme", theme);
-localStorage.setItem("theme", theme)
-  },[theme])
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const handleTheme = (checked) => {
-    setTheme(checked?"dark":"light")
-    
+    setTheme(checked ? "dark" : "light");
   };
 
-  // menus
+  // Public menu links
   const publicLinks = (
     <>
       <li>
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <GoHomeFill size={20} /> Home
@@ -44,9 +42,7 @@ localStorage.setItem("theme", theme)
         <NavLink
           to={"/services"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <MdHomeRepairService size={20} />
@@ -56,15 +52,14 @@ localStorage.setItem("theme", theme)
     </>
   );
 
+  // Private menu links
   const privateLinks = (
     <>
       <li>
         <NavLink
           to={"/add-service"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <ImBoxAdd size={16} /> Add Service
@@ -75,9 +70,7 @@ localStorage.setItem("theme", theme)
         <NavLink
           to={"/my-services"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <MdHomeRepairService size={20} /> My Services
@@ -88,9 +81,7 @@ localStorage.setItem("theme", theme)
         <NavLink
           to={"/my-bookings"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${
-              isActive ? "border-b-2 border-white" : ""
-            }`
+            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
           }
         >
           <MdAddToPhotos size={17} /> My Bookings
@@ -100,20 +91,20 @@ localStorage.setItem("theme", theme)
   );
 
   return (
-    <div className="shadow-sm bg-[#5184AF] py-2 px-4 min-h-0 z-10">
-      <div className="navbar text-white w-11/12 mx-auto">
+    <div className="shadow-sm bg-[#5184AF] py-2 px-4 z-10">
+      <div className="navbar text-white max-w-7xl mx-auto">
         {/* LEFT */}
         <div className="navbar-start">
-          {/* Mobile menu */}
-          <div className="dropdown">
+          {/* Mobile dropdown */}
+          <div className="dropdown md:hidden">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost md:hidden text-white"
+              className="btn btn-ghost text-white"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -122,26 +113,28 @@ localStorage.setItem("theme", theme)
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
+                  d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
             </div>
 
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow text-gray-700 z-10"
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box z-10 bg-base-100 dark:bg-gray-800 text-gray-700 dark:text-white w-52"
             >
               {publicLinks}
               {user && privateLinks}
             </ul>
           </div>
 
-          <Link to={"/"} className="flex items-center gap-2 text-2xl font-bold">
-            <img src={logoImg} alt="" className="w-20 rounded-3xl" /> HomeHero
+          {/* LOGO */}
+          <Link to={"/"} className="flex items-center text-2xl font-bold">
+            <img src={logoImg} alt="" className="md:w-20 w-16 rounded-3xl hidden md:inline" />{" "}
+            HomeHero
           </Link>
         </div>
 
-        {/* CENTER (Desktop Menu) */}
+        {/* CENTER (Desktop menu) */}
         <div className="navbar-center hidden md:flex">
           <ul className="menu menu-horizontal px-1 gap-4">
             {publicLinks}
@@ -169,9 +162,9 @@ localStorage.setItem("theme", theme)
 
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow text-gray-700"
+                className="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box z-50 bg-base-100 dark:bg-gray-800 text-gray-700 dark:text-white w-52"
               >
-                <div className="pb-3 border-b border-b-gray-200">
+                <div className="pb-3 border-b border-b-gray-300 dark:border-gray-600">
                   <li className="text-sm font-bold">{user.displayName}</li>
                   <li className="text-xs">{user.email}</li>
                 </div>
@@ -181,13 +174,18 @@ localStorage.setItem("theme", theme)
                     <FaUser /> Profile
                   </Link>
                 </li>
-                {/* theme */}
-                <input
-                  onChange={(e) => handleTheme(e.target.checked)}
-                  type="checkbox"
-                  defaultChecked={localStorage.getItem("theme") === "dark"}
-                  className="toggle"
-                />
+
+                {/* Theme toggle */}
+                <div className="flex items-center gap-2 px-2 py-1">
+                  <input
+                    onChange={(e) => handleTheme(e.target.checked)}
+                    type="checkbox"
+                    defaultChecked={localStorage.getItem("theme") === "dark"}
+                    className="toggle"
+                  />
+                  <span>Dark mode</span>
+                </div>
+
                 <li>
                   <a>
                     <FaGear /> Settings
@@ -203,12 +201,8 @@ localStorage.setItem("theme", theme)
               </button>
             </div>
           ) : (
-            <div className="flex justify-center items-center">
-              <img
-                src={userIcon}
-                alt=""
-                className="w-[50px] border-2 border-white rounded-full"
-              />
+            <div className="flex items-center">
+             
 
               <Link
                 to={"/auth/login"}

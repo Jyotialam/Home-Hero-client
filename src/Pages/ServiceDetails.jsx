@@ -5,38 +5,28 @@ import { AuthContext } from "../Contexts/AuthContext";
 
 const ServiceDetails = () => {
   const data = useLoaderData();
-  const service = data.result;
+  const service = data?.service;
+  const [reviews, setReviews] = useState(service?.reviews || []);
 
   const { user } = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [bookingDate, setBookingDate] = useState("");
-
-  // Reviews
-  const [reviews, setReviews] = useState([]);
-
   const navigate = useNavigate();
 
-  // Fetch reviews
-  const fetchReviews = async () => {
-    try {
-      const res = await fetch(
-        `https://home-hero-server-virid.vercel.app/services/${service._id}/reviews`
-      );
-      const data = await res.json();
-      if (data.success) {
-        setReviews(data.reviews);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   useEffect(() => {
-    document.title = "Service-Details | Home-hero";
-    fetchReviews();
-  }, [service._id]);
+    document.title = "Service-Details | HomeHero";
+  }, []);
 
-  // Booking handler
+  if (!service) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-50 dark:bg-gray-900">
+        <p className="text-xl text-gray-700 dark:text-gray-200">Service not found!</p>
+      </div>
+    );
+  }
+
+  const isProvider = user?.email === service.providerEmail;
+
   const handleBooking = async (e) => {
     e.preventDefault();
 
@@ -67,7 +57,6 @@ const ServiceDetails = () => {
           body: JSON.stringify(bookingData),
         }
       );
-
       const data = await res.json();
       if (data.success) {
         toast.success("Booking confirmed!");
@@ -81,12 +70,11 @@ const ServiceDetails = () => {
     }
   };
 
-  const isProvider = user?.email === service.providerEmail;
-
   return (
-    <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
-      <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
-        <div className="flex flex-col md:flex-row gap-8 p-6 md:p-8">
+    <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
+      {/* Service Card */}
+      <div className="card bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 p-4 md:p-6 lg:p-8">
           {/* Image */}
           <div className="shrink-0 w-full md:w-1/2">
             <img
@@ -97,8 +85,8 @@ const ServiceDetails = () => {
           </div>
 
           {/* Details */}
-          <div className="flex flex-col justify-center space-y-4 w-full md:w-1/2">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+          <div className="flex flex-col justify-center space-y-4 w-full md:w-1/2 text-gray-800 dark:text-gray-100">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">
               {service.name}
             </h1>
 
@@ -106,66 +94,64 @@ const ServiceDetails = () => {
               {service.category}
             </div>
 
-            <p className="text-gray-600 leading-relaxed text-base md:text-lg">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base">
               {service.description}
             </p>
 
-            <p className="text-lg font-semibold text-gray-700">
+            <p className="text-lg font-semibold">
               💰 Price: ${service.price}
             </p>
 
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               👤 Provider: {service.providerName} <br />
               📧 {service.providerEmail}
             </p>
 
+            {/* Booking Button */}
             <button
-              onClick={() => {
-                if (isProvider) {
-                  toast.error("You cannot book your own service!");
-                  return;
-                }
-                setModalOpen(true);
-              }}
+              onClick={() => setModalOpen(true)}
               disabled={isProvider}
-              className={`btn text-white border-0 mt-6 btn-neutral border-none text-lg w-full ${
+              className={`btn text-white border-0 mt-4 md:mt-6 w-full text-lg ${
                 isProvider
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-[#51ACFB] hover:bg-blue-600"
               }`}
             >
-              Book Now
+              {isProvider ? "Cannot Book Your Own Service" : "Book Now"}
             </button>
 
             {/* Booking Modal */}
             {modalOpen && (
               <div className="modal modal-open">
-                <div className="modal-box">
+                <div className="modal-box bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                   <h2 className="text-2xl font-bold">{service.name}</h2>
                   <p>Price: ${service.price}</p>
                   <p>Provider: {service.providerName}</p>
 
                   <form onSubmit={handleBooking} className="mt-4 space-y-4">
+                    {/* User Name */}
                     <div>
                       <label className="block mb-1 font-medium">Name</label>
                       <input
                         type="text"
                         value={user.displayName || "Anonymous"}
                         readOnly
-                        className="input input-bordered w-full bg-gray-100 cursor-not-allowed"
+                        className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 cursor-not-allowed"
                       />
                     </div>
 
+                    {/* User Email */}
                     <div>
                       <label className="block mb-1 font-medium">Email</label>
                       <input
                         type="email"
                         value={user.email}
                         readOnly
-                        className="input input-bordered w-full bg-gray-100 cursor-not-allowed"
+                        className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 cursor-not-allowed"
                       />
                     </div>
 
+                    {/* Booking Date */}
                     <div>
                       <label className="block mb-1 font-medium">
                         Booking Date
@@ -188,7 +174,7 @@ const ServiceDetails = () => {
                   </form>
 
                   <button
-                    className="btn btn-outline mt-4"
+                    className="btn btn-outline mt-4 w-full"
                     onClick={() => setModalOpen(false)}
                   >
                     Cancel
@@ -200,22 +186,24 @@ const ServiceDetails = () => {
         </div>
       </div>
 
-      {/* Review Section (Read-only) */}
-      <div className="mt-8 border-t pt-6">
-        <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+      {/* Review Section */}
+      <div className="mt-8 border-t border-gray-300 dark:border-gray-700 pt-6">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Reviews
+        </h2>
         {reviews.length === 0 ? (
-          <p>No reviews yet.</p>
+          <p className="text-gray-700 dark:text-gray-300">No reviews yet.</p>
         ) : (
           <div className="flex flex-col gap-3">
             {reviews.map((rev, i) => (
               <div
                 key={i}
-                className="border p-3 rounded-md shadow-sm bg-gray-50"
+                className="border p-3 rounded-md shadow-sm bg-gray-50 dark:bg-gray-700"
               >
                 <p className="font-semibold">{rev.userName}</p>
                 <p>Rating: {rev.rating} / 5</p>
                 <p>{rev.comment}</p>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-gray-500 dark:text-gray-400">
                   {new Date(rev.createdAt).toLocaleString()}
                 </p>
               </div>

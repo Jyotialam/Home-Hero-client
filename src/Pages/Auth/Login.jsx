@@ -1,121 +1,126 @@
-import React, { use, useEffect } from 'react';
-import { AuthContext } from '../../Contexts/AuthContext';
+import React, { useContext, useEffect } from "react";
+import { AuthContext } from "../../Contexts/AuthContext";
 import formImg from "../../assets/login-form-img.jpg";
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const {signInUser,signInWithGoogle} = use(AuthContext)
-//   console.log(signInUser,signInWithGoogle);
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
-    useEffect(() => {
-      document.title = "Login | Home-hero";
-    }, []);
+  useEffect(() => {
+    document.title = "Login | HomeHero";
+  }, []);
 
-//   handle email login
-const handleLogIn = (event) => {
+  // handle email login
+  const handleLogIn = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    console.log(email, password);
     signInUser(email, password)
       .then((result) => {
-        console.log(result.user);
-        toast.success("Successfully signed in with Email")
+        toast.success("Successfully signed in with Email");
         event.target.reset();
         navigate(location.state || "/");
       })
       .catch((error) => {
-        // console.log(error);
-        toast.error(error.message)
+        toast.error(error.message);
       });
   };
 
-
-//   handle google sign in
-   const handleGoogleSignIn = () => {
+  // handle google sign in
+  const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
-        toast.success("Successfully signed in with Google")
+        toast.success("Successfully signed in with Google");
         navigate(location?.state || "/");
       })
       .catch((error) => {
-        // console.log(error);
-        toast.error(error.message)
+        toast.error(error.message);
       });
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-blue-100 rounded-2xl">
-      {/* Parent container */}
-      <div className="flex w-11/12 h-[80vh] bg-white rounded-l-2xl rounded-r-4xl overflow-hidden">
-        {/* Right side (form) */}
-        <div className="w-1/2 flex justify-center items-center bg-base-100">
-          <div className="card w-10/12 shadow-2xl">
-            <div className="card-body">
-              <h1 className="text-4xl font-bold mb-4">
-                Login now <span className="text-[#51ACFB]">for Services!</span>
-              </h1>
-              {/* form */}
-              <form onSubmit={handleLogIn}>
-              <fieldset className="fieldset">
-                {/* email */}
-                <label className="label font-bold">Email</label>
-                <input
-                  type="email"
-                  name='email'
-                  className="input font-light text-gray-400  focus:border-0 focus:outline-gray-200 w-full"
-                  placeholder="Your Email"
-                />
-                <label className="label font-bold">Password</label>
-                <input
-                  type="password"
-                  name='password'
-                  className="input font-light text-gray-400  focus:border-0 focus:outline-gray-200 w-full"
-                  placeholder="********"
-                />
-                <div className="mt-2">
-                  <a className="link link-hover text-blue-500">
-                    Forgot password?
-                  </a>
-                </div>
-                <button className="mt-3 btn text-white hover:bg-blue-600  btn-neutral border-none text-lg w-full bg-[#51ACFB]">
-                  Login
-                </button>
-              </fieldset>
-              </form>
-              {/*  */}
-              <button
-          onClick={handleGoogleSignIn}
-          className="mt-3 btn text-white hover:bg-blue-600  btn-neutral border-none text-lg w-full bg-[#51ACFB]"
-        >
-          <FaGoogle />
-          Login with Google
-        </button>
-        <p className="text-center">
-          New to our website? Please  <Link
-            className="text-blue-500 hover:text-blue-800"
-            to="/auth/register"
-          >
-             Register
-          </Link>
-        </p>
-            </div>
-          </div>
-        </div>
-        {/*  */}
-        {/* Left side (image) */}
-        <div className="w-1/2 h-full">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900 px-4">
+      <div className="flex flex-col md:flex-row w-full max-w-6xl bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+        {/* Left side (image for desktop only) */}
+        <div className="hidden md:block md:w-1/2 h-96 md:h-auto">
           <img
             src={formImg}
             alt="Login visual"
-            className="w-full h-full object-cover rounded-4xl"
+            className="w-full h-full object-cover"
           />
+        </div>
+
+        {/* Right side (form) */}
+        <div className="w-full md:w-1/2 flex justify-center items-center p-6 md:p-12">
+          <div className="w-full max-w-md">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100 text-center">
+              Login <span className="text-[#51ACFB]">for Services!</span>
+            </h1>
+
+            <form onSubmit={handleLogIn} className="flex flex-col gap-4">
+              <div>
+                <label className="block mb-1 font-semibold text-gray-900 dark:text-gray-100">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-[#51ACFB]"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block mb-1 font-semibold text-gray-900 dark:text-gray-100">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-[#51ACFB]"
+                  placeholder="********"
+                  required
+                />
+              </div>
+
+              <div className="text-right">
+                <a className="text-blue-500 dark:text-blue-400 hover:underline text-sm">
+                  Forgot password?
+                </a>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-[#51ACFB] hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors duration-200 btn"
+              >
+                Login
+              </button>
+            </form>
+
+            <button
+              onClick={handleGoogleSignIn}
+              className="w-full mt-3 flex items-center justify-center gap-2 bg-[#51ACFB] hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors duration-200 btn"
+            >
+              <FaGoogle />
+              Login with Google
+            </button>
+
+            <p className="text-center mt-4 text-gray-700 dark:text-gray-300">
+              New to our website?{" "}
+              <Link
+                className="text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 "
+                to="/auth/register"
+              >
+                Register
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

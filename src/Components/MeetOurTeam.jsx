@@ -29,7 +29,7 @@ const teamMembers = [
 
 export default function MeetOurTeam() {
   return (
-    <section className="bg-white pt-20">
+    <section className="pt-20">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold mb-12">
           Meet our <span className="text-blue-500">team</span>
