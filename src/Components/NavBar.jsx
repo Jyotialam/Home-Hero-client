@@ -6,20 +6,34 @@ import logoImg from "../assets/final-logo.png";
 import { MdAddToPhotos, MdHomeRepairService } from "react-icons/md";
 import { ImBoxAdd } from "react-icons/im";
 import userIcon from "../assets/user.png";
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
 
 const NavBar = () => {
   const { user, signOutUser } = use(AuthContext);
 
-  // ----- MENU LINKS -----
+  const [theme,setTheme] = useState(localStorage.getItem('theme') || "light")
+  useEffect(()=>{
+const html = document.querySelector("html");
+html.setAttribute("data-theme", theme);
+localStorage.setItem("theme", theme)
+  },[theme])
+
+  const handleTheme = (checked) => {
+    setTheme(checked?"dark":"light")
+    
+  };
+
+  // menus
   const publicLinks = (
     <>
       <li>
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
+            `flex items-center gap-1 ${
+              isActive ? "border-b-2 border-white" : ""
+            }`
           }
         >
           <GoHomeFill size={20} /> Home
@@ -30,7 +44,9 @@ const NavBar = () => {
         <NavLink
           to={"/services"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
+            `flex items-center gap-1 ${
+              isActive ? "border-b-2 border-white" : ""
+            }`
           }
         >
           <MdHomeRepairService size={20} />
@@ -46,7 +62,9 @@ const NavBar = () => {
         <NavLink
           to={"/add-service"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
+            `flex items-center gap-1 ${
+              isActive ? "border-b-2 border-white" : ""
+            }`
           }
         >
           <ImBoxAdd size={16} /> Add Service
@@ -57,7 +75,9 @@ const NavBar = () => {
         <NavLink
           to={"/my-services"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
+            `flex items-center gap-1 ${
+              isActive ? "border-b-2 border-white" : ""
+            }`
           }
         >
           <MdHomeRepairService size={20} /> My Services
@@ -68,7 +88,9 @@ const NavBar = () => {
         <NavLink
           to={"/my-bookings"}
           className={({ isActive }) =>
-            `flex items-center gap-1 ${isActive ? "border-b-2 border-white" : ""}`
+            `flex items-center gap-1 ${
+              isActive ? "border-b-2 border-white" : ""
+            }`
           }
         >
           <MdAddToPhotos size={17} /> My Bookings
@@ -80,7 +102,6 @@ const NavBar = () => {
   return (
     <div className="shadow-sm bg-[#5184AF] py-2 px-4 min-h-0 z-10">
       <div className="navbar text-white w-11/12 mx-auto">
-
         {/* LEFT */}
         <div className="navbar-start">
           {/* Mobile menu */}
@@ -160,7 +181,13 @@ const NavBar = () => {
                     <FaUser /> Profile
                   </Link>
                 </li>
-
+                {/* theme */}
+                <input
+                  onChange={(e) => handleTheme(e.target.checked)}
+                  type="checkbox"
+                  defaultChecked={localStorage.getItem("theme") === "dark"}
+                  className="toggle"
+                />
                 <li>
                   <a>
                     <FaGear /> Settings

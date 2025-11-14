@@ -14,19 +14,23 @@ const MyServices = () => {
   }, []);
 
   useEffect(() => {
-    if (!user) return;
+    // 
+    if (!user?.email) {
+      setLoading(false);
+      return;
+    }
 
     fetch(
       `https://home-hero-server-virid.vercel.app/my-services?email=${user.email}`
     )
       .then((res) => res.json())
       .then((data) => {
-        setServices(data);
+        setServices(data || []);
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Failed to fetch services");
+        
         setLoading(false);
       });
   }, [user]);
@@ -39,6 +43,14 @@ const MyServices = () => {
     );
   }
 
+  if (!user) {
+    return (
+      <div className="flex justify-center items-center h-screen text-xl">
+        Please login to view your services.
+      </div>
+    );
+  }
+
   if (services.length === 0) {
     return (
       <div className="flex justify-center items-center h-screen text-xl">
@@ -46,7 +58,8 @@ const MyServices = () => {
       </div>
     );
   }
-  //
+
+  // DELETE HANDLER
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -64,17 +77,13 @@ const MyServices = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
-              // remove from UI
-              setServices(services.filter((service) => service._id !== id));
+              setServices(services.filter((s) => s._id !== id));
               Swal.fire("Deleted!", "Service has been deleted.", "success");
             } else {
               toast.error("Failed to delete service!");
             }
           })
-          .catch((err) => {
-            toast.error("Error deleting service!");
-            console.log(err);
-          });
+          .catch(() => toast.error("Error deleting service!"));
       }
     });
   };
@@ -97,6 +106,7 @@ const MyServices = () => {
               <th className="py-3 px-4 border-b text-right pr-15">Actions</th>
             </tr>
           </thead>
+
           <tbody>
             {services.map((service, index) => (
               <tr key={service._id} className="hover:bg-gray-50">

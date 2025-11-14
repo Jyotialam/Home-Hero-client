@@ -10,14 +10,33 @@ const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [bookingDate, setBookingDate] = useState("");
+
+  // Reviews
+  const [reviews, setReviews] = useState([]);
+
   const navigate = useNavigate();
 
-  //
+  // Fetch reviews
+  const fetchReviews = async () => {
+    try {
+      const res = await fetch(
+        `https://home-hero-server-virid.vercel.app/services/${service._id}/reviews`
+      );
+      const data = await res.json();
+      if (data.success) {
+        setReviews(data.reviews);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     document.title = "Service-Details | Home-hero";
-  }, []);
+    fetchReviews();
+  }, [service._id]);
 
-  //
+  // Booking handler
   const handleBooking = async (e) => {
     e.preventDefault();
 
@@ -62,7 +81,6 @@ const ServiceDetails = () => {
     }
   };
 
-  //
   const isProvider = user?.email === service.providerEmail;
 
   return (
@@ -101,7 +119,6 @@ const ServiceDetails = () => {
               📧 {service.providerEmail}
             </p>
 
-            {/* */}
             <button
               onClick={() => {
                 if (isProvider) {
@@ -120,7 +137,7 @@ const ServiceDetails = () => {
               Book Now
             </button>
 
-            {/**/}
+            {/* Booking Modal */}
             {modalOpen && (
               <div className="modal modal-open">
                 <div className="modal-box">
@@ -129,7 +146,6 @@ const ServiceDetails = () => {
                   <p>Provider: {service.providerName}</p>
 
                   <form onSubmit={handleBooking} className="mt-4 space-y-4">
-                    {/* User Name */}
                     <div>
                       <label className="block mb-1 font-medium">Name</label>
                       <input
@@ -140,7 +156,6 @@ const ServiceDetails = () => {
                       />
                     </div>
 
-                    {/* User Email */}
                     <div>
                       <label className="block mb-1 font-medium">Email</label>
                       <input
@@ -151,7 +166,6 @@ const ServiceDetails = () => {
                       />
                     </div>
 
-                    {/* Booking Date */}
                     <div>
                       <label className="block mb-1 font-medium">
                         Booking Date
@@ -184,6 +198,30 @@ const ServiceDetails = () => {
             )}
           </div>
         </div>
+      </div>
+
+      {/* Review Section (Read-only) */}
+      <div className="mt-8 border-t pt-6">
+        <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+        {reviews.length === 0 ? (
+          <p>No reviews yet.</p>
+        ) : (
+          <div className="flex flex-col gap-3">
+            {reviews.map((rev, i) => (
+              <div
+                key={i}
+                className="border p-3 rounded-md shadow-sm bg-gray-50"
+              >
+                <p className="font-semibold">{rev.userName}</p>
+                <p>Rating: {rev.rating} / 5</p>
+                <p>{rev.comment}</p>
+                <p className="text-xs text-gray-400">
+                  {new Date(rev.createdAt).toLocaleString()}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
